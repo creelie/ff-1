@@ -1,0 +1,27 @@
+name: release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, e.g. v1.0.0"
+        required: true
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package sources
+        run: |
+          cd paper
+          zip -r -X ../paper-tex.zip main.tex fig_scheme.png fig_degrees.png
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ inputs.tag }}" \
+            --target "${{ github.sha }}" \
+            --title "Isomorphic Invariant Orders Without Hermite Equivalence" \
+            --notes-file .github/RELEASE_NOTES.md \
+            paper/main.pdf paper-tex.zip
