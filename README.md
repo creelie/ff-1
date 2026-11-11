@@ -8,3 +8,5 @@ Bhargava, Evertse, Győry, Remete and Swaminathan asked whether, in every degree
 - `code/verify_resultants.py`: recomputes every resultant, discriminant and class-group check in the paper (needs `cypari2`)
 - `figures/figs.py`: draws the two figures
 
+
+DOI: [10.5281/zenodo.24126387](https://doi.org/10.5281/zenodo.24126387) (all versions)
